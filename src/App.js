@@ -10,9 +10,6 @@ function App() {
       <BrowserRouter>
         <div>
           <Navbar />
-          <h1 class="text-3xl font-bold underline">
-            Hello world!
-          </h1>
         </div>
         <Routes>
           <Route path="/" element={<Homepage />} exact />
