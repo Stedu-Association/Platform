@@ -21,12 +21,7 @@ const NavBar = () => {
   };
   const handleToggleDropdown = () => {
     setShowDropdown(!showDropdown);
-    setShowSteduDropdown(false); // Stedu initiatives dropdown
-  };
-
-  const handleToggleSteduDropdown = () => {
-    setShowSteduDropdown(!showSteduDropdown);
-    setShowDropdown(false); // User Profile dropdown
+    setShowSteduDropdown(false); 
   };
 
   // Streak Popup
@@ -66,7 +61,7 @@ const NavBar = () => {
         }}>
         <div className="container mx-auto px-4 py-2">
           <div className="flex justify-between items-center">
-            <div>
+            <div className='text-white'>
               <Link to="/">
                 Stedu Platform
               </Link>

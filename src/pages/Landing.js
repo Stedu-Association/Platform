@@ -51,7 +51,7 @@ const Landing = () => {
   ];
 
   return (
-    <div className="bg-black text-white">
+    <div className="bg-gray-900 text-white">
       {/* Hero Section */}
       <div className="hero-section bg-gradient-to-r from-black to-blue-900 text-white py-10 px-10 relative">
         <div className="container mx-auto">
@@ -77,23 +77,27 @@ const Landing = () => {
         </div>
       </div>
 
-      {/* Main Content Section */}
+
       <section className="bg-black text-white py-16">
         <div className="container mx-auto">
           <div className="text-center">
-            <h2 className="text-3xl font-bold mb-6">What is Stedu Club?</h2>
-            <p className="text-lg mb-8">
-              Stedu Clubs are student-run high-school clubs that allow students to learn about certain subject areas in STEM that wouldn’t be taught in a specialized manner at many public/private schools around the world. We’re looking for proactive student-leaders to sign-up to lead our Stedu Clubs to bring advanced specialized knowledge to their schools!
-            </p>
-            <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full text-lg font-semibold transition duration-300 ease-in-out">
-              Join Us
-            </button>
+            <div className="rounded-lg overflow-hidden hover:shadow-md hover:glow">
+              <h2 className="text-3xl font-bold mb-6 p-4">What is Stedu Platform?</h2>
+              <p className="text-lg p-4">
+                Some info about Stedu Platform
+              </p>
+              <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full text-lg font-semibold transition duration-300 ease-in-out">
+                Join Us
+              </button>
+            </div>
           </div>
         </div>
       </section>
 
+
+
       {/* Impact Stats Section */}
-      <section className="bg-gradient-to-t from-black via-blue-900 to-black text-white py-16">
+      <section className="bg-gradient-to-t from-black via-blue-900 to-black text-white p-16">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center mb-6">Our Impact in Numbers</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -111,7 +115,7 @@ const Landing = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="bg-black text-white py-16">
+      <section className="bg-black text-white p-16">
         <div className="container mx-auto">
           <h2 className="text-3xl font-bold text-center mb-6">Testimonials</h2>
           <Slider
@@ -123,7 +127,7 @@ const Landing = () => {
             slidesToScroll={1}
           >
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="testimonial-card bg-gradient-to-r from-black via-blue-900 to-black text-gray-200 rounded-lg shadow-md p-6">
+              <div key={index} className="testimonial-card bg-black text-gray-200 rounded-lg shadow-md p-6">
                 <p className="testimonial-text text-lg mb-4">{testimonial.text}</p>
                 <p className="testimonial-author font-bold text-blue-500">{testimonial.author}</p>
               </div>
@@ -131,7 +135,7 @@ const Landing = () => {
           </Slider>
         </div>
       </section>
-    </div>
+    </div >
   );
 };
 
