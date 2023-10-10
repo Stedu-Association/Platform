@@ -11,7 +11,7 @@ function App() {
   const { isAuthenticated } = useAuth0();
 
   return (
-    <div>
+    <div className="bg-gray-900">
       <BrowserRouter>
         <div>
          <Navbar/>
