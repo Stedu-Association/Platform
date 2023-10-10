@@ -3,6 +3,7 @@ import Homepage from "./pages/Homepage";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import BackToTop from "./components/BackToTop";
+import Landing from "./pages/Landing";
 
 function App() {
   return (
@@ -12,7 +13,7 @@ function App() {
           <Navbar />
         </div>
         <Routes>
-          <Route path="/" element={<Homepage />} exact />
+          <Route path="/" element={<Landing />} exact />
         </Routes>
         <div>
           <BackToTop />
