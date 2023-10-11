@@ -60,4 +60,25 @@ body {
       background-size: 150% 150%;
     }
   }
+  .apply-section {
+    background: #69a7ff;
+    border-radius: 20px;
+    padding: 40px;
+  }
+  
+  .apply-button {
+    background: #fddb3a;
+    color: #000;
+    border: none;
+    border-radius: 10px;
+    font-size: 24px;
+    padding: 15px 40px;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.3s;
+  }
+  
+  .apply-button:hover {
+    background: #fdbe2a;
+    transform: scale(1.1);
+  }
   

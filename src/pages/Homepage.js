@@ -4,6 +4,7 @@ import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import Modal from "react-modal";
 import { FiSmile } from "react-icons/fi";
+import { Link } from "react-router-dom";
 
 const localizer = momentLocalizer(moment);
 
@@ -25,7 +26,7 @@ const events = [
   },
 ];
 
-const DnDCalendar = Calendar; 
+const DnDCalendar = Calendar;
 
 Modal.setAppElement("#root");
 
@@ -55,7 +56,28 @@ const Homepage = () => {
   };
 
   return (
-    <div className="py-40 bg-black text-blue-300">
+    <div className="py-20 bg-black text-blue-300">
+      <div className='px-40'>
+        <section className="bg-gradient-to-r from-gray-100 to-blue-800 text-black py-16 relative">
+          <div className="container mx-auto">
+            <div className="text-center">
+              <h2 className="text-3xl font-bold mb-6">Apply for Stedu Summer Programs</h2>
+              <p className="text-lg mb-6">
+                Join our series of STEM workshops with renowned professors from top institutions.
+              </p>
+             <Link to="/apply">
+             <button className="apply-button">
+                Fill Application for Stedu Summer Camp 2023
+              </button>
+             </Link>
+            </div>
+          </div>
+        </section>
+      </div>
+
+
+
+
       <div className="px-20">
         <h1>Upcoming Events</h1>
         <DnDCalendar

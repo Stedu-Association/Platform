@@ -6,6 +6,8 @@ import BackToTop from "./components/BackToTop";
 import Landing from "./pages/Landing";
 import { useAuth0 } from "@auth0/auth0-react";
 import Error from "./pages/Error";
+import About from "./pages/About";
+import Apply from "./pages/Apply";
 
 function App() {
   const { isAuthenticated } = useAuth0();
@@ -19,6 +21,8 @@ function App() {
         <Routes>
           <Route path="/" element={isAuthenticated ? <Homepage /> : <Landing />} exact />
           <Route path="*" element={<Error />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/apply" element={<Apply />} />
         </Routes>
         <div>
           <BackToTop />

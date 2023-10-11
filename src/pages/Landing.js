@@ -52,6 +52,14 @@ const Landing = () => {
 
   return (
     <div className="bg-gray-900 text-white">
+      <div className='py-9'></div>
+      <div className="marquee-section bg-yellow-400 text-white">
+        <div className="container text-black mx-auto text-center">
+          <marquee direction="left" behavior="scroll" scrollamount="4">
+            🚀 Explore the Universe with Stedu Summer Camp 2023 🌠 Enroll Now for Stellar Adventures!
+          </marquee>
+        </div>
+      </div>
       {/* Hero Section */}
       <div className="hero-section bg-gradient-to-r from-black to-blue-900 text-white py-10 px-10 relative">
         <div className="container mx-auto">
@@ -75,26 +83,25 @@ const Landing = () => {
             </motion.p>
           </div>
         </div>
-      </div>
 
 
-      <section className="bg-black text-white py-16">
-        <div className="container mx-auto">
-          <div className="text-center">
-            <div className="rounded-lg overflow-hidden hover:shadow-md hover:glow">
-              <h2 className="text-3xl font-bold mb-6 p-4">What is Stedu Platform?</h2>
-              <p className="text-lg p-4">
-                Some info about Stedu Platform
-              </p>
-              <button className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full text-lg font-semibold transition duration-300 ease-in-out">
-                Join Us
-              </button>
+        <div className='px-40'>
+          <section className="bg-gradient-to-r from-gray-100 to-blue-800 text-black py-16 relative">
+            <div className="container mx-auto">
+              <div className="text-center">
+                <h2 className="text-3xl font-bold mb-6">Apply for Stedu Summer Programs</h2>
+                <p className="text-lg mb-6">
+                  Join our series of STEM workshops with renowned professors from top institutions.
+                </p>
+                <button className="apply-button">
+                  Apply for Stedu Summer Camp
+                </button>
+              </div>
             </div>
-          </div>
+          </section>
         </div>
-      </section>
 
-
+      </div>
 
       {/* Impact Stats Section */}
       <section className="bg-gradient-to-t from-black via-blue-900 to-black text-white p-16">
