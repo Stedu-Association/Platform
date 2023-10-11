@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import app from '../db/Firebase';
-import { getDatabase, push, ref } from 'firebase/database';
+import { get, getDatabase, push, ref } from 'firebase/database';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const Apply = () => {
     const db = getDatabase(app);
+    const {user} = useAuth0();
     const [formData, setFormData] = useState({
         step: 1,
         firstName: '',
@@ -24,7 +26,7 @@ const Apply = () => {
     });
     const [otherLink, setOtherLink] = useState('');
     const [submissionStatus, setSubmissionStatus] = useState('');
-
+    
     const pushFormDataToFirebase = (formData) => {
         const applicationsRef = ref(db, 'applications');
         push(applicationsRef, formData)
@@ -92,6 +94,24 @@ const Apply = () => {
         setFormData({ ...formData, schoolDetails: updatedSchoolDetails });
     };
 
+    useEffect(() => {
+        const userEmail = user.email; 
+
+        const checkApplicationStatus = async () => {
+            const userRef = ref(db, 'applications');
+            const snapshot = await get(userRef);
+
+            snapshot.forEach((childSnapshot) => {
+                const applicationData = childSnapshot.val();
+
+                if (applicationData.email === userEmail) {
+                    setSubmissionStatus('Your application has already been submitted. Stay tuned for our decision via email.');
+                }
+            });
+        }
+
+        checkApplicationStatus();
+    }, [db]);
 
     return (
         <div className="p-40 m-auto space-y-2">

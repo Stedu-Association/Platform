@@ -67,7 +67,7 @@ const Homepage = () => {
               </p>
              <Link to="/apply">
              <button className="apply-button">
-                Fill Application for Stedu Summer Camp 2023
+                Fill Application for Stedu Summer Camp 2024
               </button>
              </Link>
             </div>
