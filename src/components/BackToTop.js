@@ -1,9 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react';
 
 const BackToTop = () => {
-  return (
-    <div>BackToTop</div>
-  )
-}
+  const [isVisible, setIsVisible] = useState(false);
 
-export default BackToTop
+  const toggleVisibility = () => {
+    if (window.pageYOffset > 300) {
+      setIsVisible(true);
+    } else {
+      setIsVisible(false);
+    }
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  // Add an event listener to track scrolling
+  window.addEventListener('scroll', toggleVisibility);
+
+  return (
+    <div className={`back-to-top ${isVisible ? 'visible' : ''}`} onClick={scrollToTop}>
+      <i className="fas fa-arrow-up"></i>
+    </div>
+  );
+};
+
+export default BackToTop;

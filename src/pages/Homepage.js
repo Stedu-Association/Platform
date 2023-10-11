@@ -1,9 +1,131 @@
-import React from 'react'
+import React from "react";
+import { Calendar, momentLocalizer } from "react-big-calendar";
+import moment from "moment";
+import "react-big-calendar/lib/css/react-big-calendar.css";
+import Modal from "react-modal";
+import { FiSmile } from "react-icons/fi";
+import { Link } from "react-router-dom";
+
+const localizer = momentLocalizer(moment);
+
+const events = [
+  {
+    start: new Date(2023, 10, 10, 10, 0),
+    end: new Date(2023, 10, 10, 11, 30),
+    title: "Physics Workshop",
+  },
+  {
+    start: new Date(2023, 10, 15, 14, 0),
+    end: new Date(2023, 10, 15, 16, 0),
+    title: "Chemistry Workshop",
+  },
+  {
+    start: new Date(2023, 10, 20, 9, 30),
+    end: new Date(2023, 10, 20, 12, 0),
+    title: "Mathematics Seminar",
+  },
+];
+
+const DnDCalendar = Calendar;
+
+Modal.setAppElement("#root");
 
 const Homepage = () => {
-  return (
-    <div>Homepage</div>
-  )
-}
+  const [selectedEvent, setSelectedEvent] = React.useState(null);
+  const [showSmileyConfirmation, setShowSmileyConfirmation] = React.useState(false);
 
-export default Homepage
+  const onEventResize = (data) => {
+    console.log("Event resized:", data);
+  };
+
+  const onEventDrop = (data) => {
+    console.log("Event dropped:", data);
+  };
+
+  const handleEventSelect = (event) => {
+    setSelectedEvent(event);
+    const smileyConfirmation = setTimeout(() => {
+      setShowSmileyConfirmation(true);
+      setTimeout(() => setShowSmileyConfirmation(false), 3000);
+      clearTimeout(smileyConfirmation);
+    }, 3000);
+  };
+
+  const closeSmileyConfirmation = () => {
+    setShowSmileyConfirmation(false);
+  };
+
+  return (
+    <div className="py-20 bg-black text-blue-300">
+      <div className='px-40'>
+        <section className="bg-gradient-to-r from-gray-100 to-blue-800 text-black py-16 relative">
+          <div className="container mx-auto">
+            <div className="text-center">
+              <h2 className="text-3xl font-bold mb-6">Apply for Stedu Summer Programs</h2>
+              <p className="text-lg mb-6">
+                Join our series of STEM workshops with renowned professors from top institutions.
+              </p>
+             <Link to="/apply">
+             <button className="apply-button">
+                Fill Application for Stedu Summer Camp 2023
+              </button>
+             </Link>
+            </div>
+          </div>
+        </section>
+      </div>
+
+
+
+
+      <div className="px-20">
+        <h1>Upcoming Events</h1>
+        <DnDCalendar
+          defaultDate={moment().toDate()}
+          defaultView="month"
+          events={events}
+          localizer={localizer}
+          onEventDrop={onEventDrop}
+          onEventResize={onEventResize}
+          onSelectEvent={handleEventSelect}
+          style={{ height: "60vh" }}
+        />
+      </div>
+      {selectedEvent && (
+        <div className="px-20 mt-5">
+          <button
+            onClick={closeSmileyConfirmation}
+            className="bg-blue-500 text-white font-medium py-2 px-4 rounded-md"
+          >
+            RSVP
+          </button>
+        </div>
+      )}
+      <Modal
+        isOpen={showSmileyConfirmation}
+        style={{
+          overlay: {
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+          },
+          content: {
+            backgroundColor: "#364652",
+            border: "none",
+            borderRadius: "12px",
+            padding: "20px",
+            width: "200px",
+            height: "100px",
+            margin: "auto",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          },
+        }}
+      >
+        <FiSmile size={48} color="#f0c90e" />
+        <p>RSVP Confirmed!</p>
+      </Modal>
+    </div>
+  );
+};
+
+export default Homepage;
