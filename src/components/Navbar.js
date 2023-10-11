@@ -180,8 +180,8 @@ const NavBar = () => {
           </div>
         </div>
       </nav>
-      <PopupboxContainer />
-      {isAuthenticated && showStreakPopup()}
+      {/* <PopupboxContainer />
+      {isAuthenticated && showStreakPopup()} */}
     </div>
   );
 };
