@@ -56,7 +56,7 @@ const Landing = () => {
       <div className="marquee-section bg-yellow-400 text-white">
         <div className="container text-black mx-auto text-center">
           <marquee direction="left" behavior="scroll" scrollamount="4">
-            🚀 Explore the Universe with Stedu Summer Camp 2023 🌠 Enroll Now for Stellar Adventures!
+            🚀 Explore the Universe with Stedu Summer Camp 2024 🌠 Enroll Now for Stellar Adventures!
           </marquee>
         </div>
       </div>
