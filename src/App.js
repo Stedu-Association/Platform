@@ -8,6 +8,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Error from "./pages/Error";
 import About from "./pages/About";
 import Apply from "./pages/Apply";
+import Profile from "./pages/Profile";
 
 function App() {
   const { isAuthenticated } = useAuth0();
@@ -23,6 +24,7 @@ function App() {
           <Route path="*" element={<Error />} />
           <Route path="/about" element={<About />} />
           <Route path="/apply" element={<Apply />} />
+          <Route path="/profile" element={<Profile/>} />
         </Routes>
         <div>
           <BackToTop />

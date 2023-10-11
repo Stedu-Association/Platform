@@ -1,16 +1,17 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import { motion } from 'framer-motion';
 import { FiHome, FiCalendar, FiBookOpen, FiBriefcase, FiUsers, FiInfo, FiLogOut, FiMoon, FiSun, FiPlus } from 'react-icons/fi';
 import ReactConfetti from 'react-confetti';
 import { PopupboxContainer, PopupboxManager } from 'react-popupbox';
-
+import 'react-popupbox/dist/react-popupbox.css';
 
 const NavBar = () => {
   const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
   const [showDropdown, setShowDropdown] = useState(false);
   const [showSteduDropdown, setShowSteduDropdown] = useState(false);
+  const [loginStreak, setLoginStreak] = useState(0);
 
   const handleLogin = () => {
     loginWithRedirect();
@@ -31,7 +32,7 @@ const NavBar = () => {
         <div className="streak-popup-container">
           <div className="streak-popup">
             <h4>Congratulations!</h4>
-            <p>You've logged in for 5 days in a row.</p>
+            <p>You've logged in for {loginStreak} days in a row.</p>
             <button
               onClick={() => {
                 PopupboxManager.close();
@@ -45,9 +46,10 @@ const NavBar = () => {
       ),
       config: {
         titleBar: { enable: false },
+        overlayOpacity: 0.8,
+        scrollLock: true,
         fadeIn: true,
         fadeInSpeed: 500,
-        overlayOpacity: 0.8,
       },
     });
   };
@@ -70,19 +72,19 @@ const NavBar = () => {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}>
-              <Link to="/" className="flex items-center hover:text-blue-500 text-white  font-medium whitespace-nowrap">
+              <Link to="/" className="flex items-center hover-text-blue-500 text-white font-medium whitespace-nowrap">
                 <FiHome size={18} className="mr-1 inline" />
                 Home
               </Link>
-              <Link to="/about" className="flex items-center hover:text-blue-500 text-white font-medium whitespace-nowrap">
+              <Link to="/about" className="flex items-center hover-text-blue-500 text-white font-medium whitespace-nowrap">
                 <FiInfo size={18} className="mr-1 inline" />
                 About
               </Link>
-              <Link to="/meet_the_team" className="flex items-center hover:text-blue-500 text-white font-medium whitespace-nowrap">
+              <Link to="/meet_the_team" className="flex items-center hover-text-blue-500 text-white font-medium whitespace-nowrap">
                 <FiUsers size={18} className="mr-1 inline" />
                 Meet the Team
               </Link>
-              <Link to="/community" className="flex items-center text-white hover:text-blue-500 font-medium whitespace-nowrap">
+              <Link to="/community" className="flex items-center text-white hover-text-blue-500 font-medium whitespace-nowrap">
                 <FiUsers size={18} className="mr-1 inline" />
                 Community
               </Link>
@@ -96,7 +98,7 @@ const NavBar = () => {
                 <div className="relative flex items-center space-x-4">
                   <motion.button
                     onClick={handleToggleDropdown}
-                    className="flex items-center space-x-1 cursor-pointer focus:outline-none"
+                    className="flex items-center space-x-1 cursor-pointer focus-outline-none"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -150,7 +152,7 @@ const NavBar = () => {
               ) : (
                 <motion.button
                   onClick={handleLogin}
-                  className={`bg-blue-500 text-white font-medium py-4 px-4 rounded-md hover:bg-blue-600 hover:bg-blue-400`}
+                  className={`bg-blue-500 text-white font-medium py-4 px-4 rounded-md hover-bg-blue-600 hover-bg-blue-400`}
                   whileHover={{ scale: 1.05, transition: { duration: 0.4 } }}
                   whileTap={{ scale: 0.95, transition: { duration: 0.4 } }}
                 >
@@ -158,14 +160,14 @@ const NavBar = () => {
                 </motion.button>
               )}
             </motion.div>
-            <motion.div className="md:hidden flex items-center"
+            <motion.div className="md-hidden flex items-center"
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}>
               <button
                 type="button"
                 onClick={handleToggleDropdown}
-                className={`text-gray-600 hover:text-gray-900 focus:outline-none focus:text-gray-900 text-white`}
+                className={`text-gray-600 hover-text-gray-900 focus-outline-none focus-text-gray-900 text-white`}
                 aria-label="Toggle menu"
               >
                 <svg className='h-2 w-6 fill-current viewBox="0 0 44 44'>
@@ -180,8 +182,8 @@ const NavBar = () => {
           </div>
         </div>
       </nav>
-      {/* <PopupboxContainer />
-      {isAuthenticated && showStreakPopup()} */}
+      {/* <PopupboxContainer /> */}
+      {isAuthenticated && <ReactConfetti recycle={false} />}
     </div>
   );
 };
