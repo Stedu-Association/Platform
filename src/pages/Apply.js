@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import app from '../db/Firebase';
+import { getDatabase, push, ref } from 'firebase/database';
 
 const Apply = () => {
+    const db = getDatabase(app);
     const [formData, setFormData] = useState({
         step: 1,
         firstName: '',
@@ -22,6 +25,17 @@ const Apply = () => {
     const [otherLink, setOtherLink] = useState('');
     const [submissionStatus, setSubmissionStatus] = useState('');
 
+    const pushFormDataToFirebase = (formData) => {
+        const applicationsRef = ref(db, 'applications');
+        push(applicationsRef, formData)
+            .then((newRef) => {
+                console.log('Data added to Firebase with ID:', newRef.key);
+                setSubmissionStatus('Congratulations! Your application has been submitted. Stay tuned for our decision via email.');
+            })
+            .catch((error) => {
+                console.error('Error adding data to Firebase:', error);
+            });
+    };
 
     const handleChange = (e) => {
         const { name, value, type, files } = e.target;
@@ -49,6 +63,7 @@ const Apply = () => {
 
         const isSubmitted = true;
         if (isSubmitted) {
+            pushFormDataToFirebase(formData);
             setSubmissionStatus('Congratulations! Your application has been submitted. Stay tuned for our decision via email.');
         }
     };
