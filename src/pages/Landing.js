@@ -15,7 +15,7 @@ const Landing = () => {
   useEffect(() => {
     const websiteName = 'Stedu Association';
     let currentIndex = 0;
-    console.log('can I push changes to Git?');
+
     const typingInterval = setInterval(() => {
       setTypingText((prevText) => websiteName.slice(0, currentIndex + 1));
       currentIndex++;
