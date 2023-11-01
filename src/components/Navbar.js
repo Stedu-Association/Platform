@@ -8,21 +8,18 @@ import { PopupboxContainer, PopupboxManager } from 'react-popupbox';
 import 'react-popupbox/dist/react-popupbox.css';
 
 const NavBar = () => {
-  const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0();
+  const { isAuthenticated, loginWithPopup, logout, user } = useAuth0();
   const [showDropdown, setShowDropdown] = useState(false);
   const [showSteduDropdown, setShowSteduDropdown] = useState(false);
   const [loginStreak, setLoginStreak] = useState(0);
 
   const handleLogin = () => {
-    loginWithRedirect();
+    loginWithPopup();
   };
 
-  const handleLogout = () => {
-    logout({ returnTo: window.location.origin });
-  };
   const handleToggleDropdown = () => {
     setShowDropdown(!showDropdown);
-    setShowSteduDropdown(false); 
+    setShowSteduDropdown(false);
   };
 
   // Streak Popup
@@ -140,11 +137,12 @@ const NavBar = () => {
                           Settings
                         </Link>
                         <button
-                          onClick={handleLogout}
+                          onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })}
                           className={`block w-full text-left px-4 py-4 text-sm text-red-600`}
                         >
-                          Logout
+                          Log Out
                         </button>
+
                       </div>
                     </motion.div>
                   )}
