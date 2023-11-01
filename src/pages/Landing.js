@@ -15,6 +15,7 @@ const Landing = () => {
   useEffect(() => {
     const websiteName = 'Stedu Association';
     let currentIndex = 0;
+
     const typingInterval = setInterval(() => {
       setTypingText((prevText) => websiteName.slice(0, currentIndex + 1));
       currentIndex++;
@@ -24,6 +25,7 @@ const Landing = () => {
       }
     }, 100);
   }, []);
+
 
   const testimonials = [
     {
