@@ -9,6 +9,7 @@ const Profile = () => {
 
   const [formData, setFormData] = useState({
     step: 1,
+    accountType: '',
     firstName: '',
     lastName: '',
     email: user.email,
@@ -133,7 +134,38 @@ const Profile = () => {
           {formData.step === 1 && (
             <>
               <div className="space-y-6 text-black">
-                <h2 className="text-2xl text-yellow-300 font-bold">Step 1: Personal Details</h2>
+                <h2 className="text-2xl text-yellow-300 font-bold">Step 1: Account Type</h2>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <label for="teacher" className="block text-gray-300">Teacher</label>
+                    <input
+                      type="radio"
+                      id="teacher"
+                      value="teacher"
+                      name="accountType"
+                      checked={formData.accountType === "teacher"}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div>
+                    <label for="student" className="block text-gray-300">Student</label>
+                    <input
+                      type="radio"
+                      id="student"
+                      value="student"
+                      name="accountType"
+                      checked={formData.accountType === "student"}
+                      onChange={handleChange}
+                    />
+                  </div>
+                </div>
+              </div>
+            </>
+          )}
+          {formData.step === 2 && (
+            <>
+              <div className="space-y-6 text-black">
+                <h2 className="text-2xl text-yellow-300 font-bold">Step 2: Personal Details</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   <div>
                     <label className="block text-gray-300">First Name</label>
@@ -206,10 +238,10 @@ const Profile = () => {
               </div>
             </>
           )}
-          {formData.step === 2 && (
+          {formData.step === 3 && (
             <>
               <div className="space-y-6 py-3 text-black">
-                <h2 className="text-2xl font-bold text-yellow-300">Step 2: School/Professional Details</h2>
+                <h2 className="text-2xl font-bold text-yellow-300">Step 3: School/Professional Details</h2>
                 {formData.schoolDetails.map((school, index) => (
                   <div key={index}>
                     <label className="block text-gray-300">School/University Name</label>
@@ -264,10 +296,10 @@ const Profile = () => {
             </>
           )}
 
-          {formData.step === 3 && (
+          {formData.step === 4 && (
             <>
               <div className="space-y-6">
-                <h2 className="text-2xl font-bold text-yellow-300">Step 3: Shared Links and Reasons for Joining</h2>
+                <h2 className="text-2xl font-bold text-yellow-300">Step 4: Shared Links and Reasons for Joining</h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-gray-300">LinkedIn Profile URL</label>
@@ -358,10 +390,10 @@ const Profile = () => {
               </div>
             </>
           )}
-          {formData.step === 4 && (
+          {formData.step === 5 && (
             <>
               <div className="space-y-6">
-                <h2 className="text-2xl font-bold text-yellow-300">Step 4: Acknowledgement</h2>
+                <h2 className="text-2xl font-bold text-yellow-300">Step 5: Acknowledgement</h2>
                 <div className="space-y-2">
                   <label className="block text-gray-300">
                     <input
