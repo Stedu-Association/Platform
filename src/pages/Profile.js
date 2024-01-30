@@ -7,6 +7,7 @@ const Profile = () => {
   const db = getDatabase(app);
   const { user } = useAuth0();
 
+  const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
     step: 1,
     accountType: '',
@@ -42,6 +43,10 @@ const Profile = () => {
       });
   };
 
+  const toggleEditing = () => {
+    setIsEditing(!isEditing)
+  };
+
   const handleChange = (e) => {
     const { name, value, type, files } = e.target;
     const updatedFormData = { ...formData };
@@ -65,6 +70,8 @@ const Profile = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    setIsEditing(false);
 
     const userRef = ref(db, 'profile/' + user.sub); // Use user's unique identifier
 
@@ -122,10 +129,35 @@ const Profile = () => {
     checkApplicationStatus();
   }, [db, user]);
 
+  useEffect(() => {
+    const getUserInfo = async () => {
+      const userRef = ref(db, 'profile/' + user.sub)
+      const snapshot = await get(userRef)
+      const userInfo = snapshot.val()
+
+      setFormData(userInfo)
+    }
+
+    getUserInfo()
+  }, [db, user, isEditing])
+
   return (
     <div className="p-40 m-auto space-y-2">
-      {confirmationMessage ? (
-        <div className="text-yellow-500 text-2xl font-bold">{confirmationMessage}</div>
+      {!isEditing ? (
+        <>
+          <div className="text-yellow-500 text-2xl font-bold">{confirmationMessage}</div>
+          <div className="text-yellow-500 text-2xl font-bold">Filled profile will go here</div>
+          <div className="text-yellow-500 text-2xl font-bold">
+            {`${formData.firstName} ${formData.lastName}: ${formData.accountType}`}
+          </div>
+          <button
+            type="button"
+            onClick={toggleEditing}
+            className="bg-gray-300 text-gray-700 py-2 px-4 rounded"
+          >
+            Edit Profile
+          </button>
+        </>
       ) : (
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
